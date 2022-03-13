@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pokemon overload</title>
+	    <style type="text/css">  
+body {background-color:grey}  /*sets the background colour*/
+</style>>
+</head>
+<body>
+<script type="text/javascript">
+	alert("hello!"); //intro to the game 
+	alert("welcome to pokemon overload");
+	alert("all you need to do is pick a pokemon, get some items and then battle the evil team red!");
+	alert("pick a starter pokemon!");
+
+
+//first pokemon (team red)
+var aATTACK = 55;
+var aDEFENSE = 30;
+var alevel = 5;
+
+// team red PP randomizer
+let min = 10 //minimum value
+let max = 30 //max value
+var aPP = Math.floor(Math.random() * (+max - +min)) + +min; // random number genorator
+
+//item cost values
+var potionCost = 0;
+var SuperPotionCost = 0;
+var reviveCost = 0;
+ function bg_Music {
+ 	//music and SFX
+	var backgroundMusic // the var to call this cound file
+	backgroundMusic = new sound("//insert file name here"); //creates new sound object
+	backgroundMusic.play();
+ }
+
+
+pkmnSelect(); //calls the function to begin the game
+itemSelect(); // selects the items
+//gets the users choice of pokemon
+function pkmnSelect(){
+	var UserImput = prompt("1: (bulbasaur, earth type) | 2: (charmander, Fire type) | 3: (squirtle water type) ");
+
+var userPokemon = null
+
+if(UserImput == '1'){
+	 userPokemon = "bulbasaur";
+	alert("you choose "+ userPokemon);
+	var confirm = prompt("are you sure that this is the pokemon that you want? (y or n)")
+	if(confirm='y'){
+		itemSelect();
+	}else{
+		pkmnSelect();
+	}
+}
+
+if(UserImput == '2'){
+	userPokemon = "charmander";
+	alert("you choose " + userPokemon);
+	var confirm = prompt("are you sure that this is the pokemon that you want? (y or n)")
+	if(confirm='y'){
+		itemSelect();
+	}else{
+		pkmnSelect();
+	}
+}
+
+if(UserImput == '3'){
+	userPokemon = "squirtle";
+	alert("you choose " + userPokemon);
+	var confirm = prompt("are you sure that this is the pokemon that you want? (y or n)")
+	if(confirm='y'){
+		itemSelect();
+	}else{ // auto confirms it becuuse im mean
+		pkmnSelect(); //calls the next function, to move to the next part of the game
+	}
+}
+
+}
+
+function itemSelect(){
+	var money = 3000
+	alert("welcome to the item shop! you have " + money + "cash to spend");
+	var userImput = prompt("1: (potion, heals 10HP) | 2: (Super potion, heals 50HP) | 3: (revive, 5HP, after your dead you get revived with 5 5HP) ");
+
+	if(userImput=='1'){
+		prompt("this item costs 800, would you like to purchase it? (y or n)")
+		if(userImput=="y"){
+			var ballance = money - potionCost;
+			alert("you bought one item")
+			var prompt = prompt("would you like to buy another item?")
+			if(prompt=='y'){
+				itemRESTART();
+			}else{
+				
+			}
+		}else{
+			alert("returning to menu")
+			itemSelect();
+		}
+	}
+}
+
+// this is all new stuff battles start here.
+</script>
+</body>
+</html>>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pokemon overload</title>
+	    <style type="text/css">  
+body {background-color:grey}  /*sets the background colour*/
+</style>>
+</head>
+<body>
+<script type="text/javascript">
+
+	//music and SFX for reguler gameplay
+
+	var music = new Audio("BG_music.mp3"); // the var to call this cound file
+	music.play();
+	alert("press the X to enable audio");
+	alert("hello!"); //intro to the game 
+	alert("welcome to pokemon overload");
+	alert("all you need to do is pick a pokemon, get some items and then battle the evil team red!");
+	alert("pick a starter pokemon!");
+
+
+//first pokemon (team red)
+var aATTACK = 55;
+var aDEFENSE = 30;
+var alevel = 5;
+
+// team red PP randomizer
+let min = 10; //minimum value
+let max = 30; //max value
+var aPP = Math.floor(Math.random() * (+max - +min)) + +min; // random number genorator
+
+//item cost values
+var potionCost = 0;
+var SuperPotionCost = 0;
+var reviveCost = 0;
+
+
+
+pkmnSelect(); //calls the function to begin the game
+itemSelect(); // selects the items
+//gets the users choice of pokemon
+function pkmnSelect(){
+	var UserImput = prompt("1: (bulbasaur, earth type) | 2: (charmander, Fire type) | 3: (squirtle water type) ");
+
+var userPokemon = null;
+
+if(UserImput == '1'){
+	 userPokemon = "bulbasaur";
+	alert("you choose "+ userPokemon);
+	var confirm = prompt("are you sure that this is the pokemon that you want? (y or n)")
+	if(confirm='y'){
+		//itemSelect();
+		battle();
+
+	}else{
+		pkmnSelect();
+	}
+}
+
+if(UserImput == '2'){
+	userPokemon = "charmander";
+	alert("you choose " + userPokemon);
+	var confirm = prompt("are you sure that this is the pokemon that you want? (y or n)")
+	if(confirm='y'){
+		//itemSelect();
+		battle();
+	}else{
+		pkmnSelect();
+	}
+}
+
+if(UserImput == '3'){
+	userPokemon = "squirtle";
+	alert("you choose " + userPokemon);
+	var confirm = prompt("are you sure that this is the pokemon that you want? (y or n)")
+	if(confirm='y'){
+		//itemSelect();
+		battle();
+	}else{ // auto confirms it becuuse im mean
+		pkmnSelect(); //calls the next function, to move to the next part of the game
+	}
+}
+ //commented out a buch of stuff beCauw its still in testing and seems to make the battle really ahrd for the user, when i finish the final project, i will come back and mak it better.
+}
+
+/*function itemSelect(){
+	var money = 3000
+	alert("welcome to the item shop! you have " + money + "cash to spend");
+	var userImput = prompt("1: (potion, heals 10HP) | 2: (Super potion, heals 50HP) | 3: (revive, 5HP, after your dead you get revived with 5 5HP) ");
+
+	if(userImput=='1'){
+		prompt("this item costs 800, would you like to purchase it? (y or n)")
+		if(userImput=="y"){
+			var ballance = money - potionCost;
+			alert("you bought one item")
+			var prompt = prompt("would you like to buy another item?")
+			if(prompt=='y'){
+				itemRESTART();
+			}else{
+				
+			}
+		}else{
+			alert("returning to menu");
+			itemSelect();
+		}
+	}
+}
+*/
+//battle();
+
+// this is all new stuff battles start here.
+
+ 	//music and SFX for battle gameplay
+
+function battle(){
+	var BMusic  = new Audio("battle_music.mp3"); // the var to call this cound file
+	BMusic.play();
+ 
+	alert(" are you ready gamer?");
+	music.pause();
+	BMusic.play();
+
+// varubles
+
+	//potion
+	//super_potion
+	//revive_life
+
+// BULBASUR VARS 
+	var bulbasaur_helth = 45;
+
+// CHARMANDER VARS
+	var charmander_helth = 39;
+
+// SQURTLE VARS
+
+var squrtle_helth = 44;
+
+// team red pokemon (versing)
+// "AI" but not really lol, just a bunch of IF statements
+
+// pikachu AI 
+var pika_red_AI_helth = 35;
+
+
+	var username = prompt("what should we call you?");
+	Music.pause();
+
+	alert("welxome to your first battle, here you will fight team red, in a gym style battle!");
+	alert("without further adieu, lets get into the battle!");
+	var pokie_choice = prompt("               what pokemon would you like to put out first? \n               1, Bulbasaur | 2, Charmander | 3, Squirtle ");
+
+	if(pokie_choice=="1"){
+		alert("you threw out a Bulbasaur!");
+		bulbasaur_helth = 45;
+
+		//moves max damage is 50
+		let min = 3; //minimum value
+		let max = 50; //max value
+		var random_attack_bulbasur = Math.floor(Math.random() * (+max - +min)) + +min; // attack range
+
+		var growal = random_attack_bulbasur;
+		var vine_whip = random_attack_bulbasur;
+		var poisen_powder = random_attack_bulbasur;
+
+	}
+
+	if(pokie_choice=="2"){
+		alert("you through out a Charmander");
+		charmander_helth = 39
+
+		//max damage is
+	}
+
+	if(pokie_choice=="3"){
+		alert("you through out a Squrtle");
+
+	}
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+//team red code starts here
+
+//AI RANDOMIZER 
+
+//randomizer for damage
+	let min = 2 //minimum value
+	let max = 35 //max value
+	var AI_randomizer = Math.floor(Math.random() * (+max - +min)) + +min; // randomizes the attack, makes it eayser to the user, so they dont die as much
+
+	//AI moves
+	let min = 1 //minimum value | lets there be a higher chance of choosing 1
+	let max = 4 //max value
+	var pokie_ai_choice = Math.floor(Math.random() * (+max - +min)) + +min; // attack range
+
+	// chooses what move to use for team red 
+
+	let min = 1 //minimum value | lets there be a higher chance of choosing 4 and 1 
+	let max = 5 //max value
+	var AI_move_choice = Math.floor(Math.random() * (+max - +min)) + +min; // move choice
+
+	//global vars needed
+
+	if(pokie_ai_choice = 3){
+		alert("team red through out a Pikachu!");
+
+		var red_pika_hp = 35;
+
+		//moves 
+		var charm = AI_randomizer;
+		var quick_attack = AI_randomizer;
+		var nuzzle = AI_randomizer;
+		var tail_whip = AI_randomizer;
+
+	}
+
+	if(pokie_ai_choice = 2){
+		alert("team red through out a Eevee!");
+
+		var red_eevee_hp = 55;
+		//moves 
+
+		var doubble_kick = AI_randomizer;
+		var tackle = AI_randomizer;
+		var swift = AI_randomizer;
+		var covet = AI_randomizer;
+	}
+
+	if(pokie_ai_choice = 1){
+		alert("team red through out a Oshawott!");
+
+		var red_Oshawott_hp = 55;
+
+		//moves 
+		var air_slash = AI_randomizer;
+		var aqua_jet = AI_randomizer;
+		var assurince = AI_randomizer;
+		var night_slash = AI_randomizer;
+
+
+	}
+
+}
+</script>
+
+</script>
+</body>
+</html>>l

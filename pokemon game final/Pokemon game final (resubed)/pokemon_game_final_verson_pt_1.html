@@ -1,0 +1,863 @@
+<!DOCTYPE html> <!--tells the editor what sintax to use-->
+<html>
+<head>
+    <title>pokemon overload</title> <!--sets the title-->
+            <style type="text/css">  
+body {background-color:red}  /*sets the background colour || would be cool to have promps a diffrent colour then the background*/
+</style>>
+</head> 
+<body>
+<script type="text/javascript">
+	var background_music = new Audio("backgroundMusic.mp3"); // intro mmusic (must be first thing to load so it has time to play before the battle musci starts.)
+	background_music.play();
+    // anything that you see that starts with R, means rival (so thats the "ai" or team red)
+
+	//music variables
+
+	//UI Sound Effects
+	var sel = new Audio("select.wav");
+
+// this file looks huge, but honestly half of it is just varubles
+ // anything that you see that starts with R, means rival (so thats the "ai" or team red)
+
+ 	alert("**IMPORTENT**\n please enable sound in your browsers settings.\n this game works best in firefox.\n when you are ready to play the game refresh the page\n (this dialogue will show every time you refresh the page to serve as a reminder)\n enjoy the game.")
+	//main music/ sound tracks
+	rivalB = new Audio('battle_music_A.mp3');  // creates the new audio needed to play -- see notes at bottem
+			rivalB.addEventListener('ended', function() {
+    			this.currentTime = 0; //-- gets current time of the track
+    			this.play(); 
+			}, false);
+
+			rivalEcc = new Audio('encounter_music.mp3');  // battle victory music
+			rivalEcc.addEventListener('ended', function() {
+    			this.currentTime = 0;
+    			this.play();
+			}, false);
+
+	var win = new Audio("chear.mp3"); // gets audio simaler to get element by id, kinda cool actully
+	var loss = new Audio("you_suck_boo.mp3"); //ended up removing thease beacause of the bug but i still wanted them here. just in case they decide to work
+
+	//USER VARIABLES
+	var GlobalName = "name"; //anything = name is the same as null, exept it needed to be in a string so yea
+	var GlobalLV = 1;
+	var GlobalHP = 1;
+	var GlobalSETHP = 1;
+
+	var MoveName1 = "name"; // null values for this 
+	var MoveName2 = "name";
+	var MoveName3 = "name";
+	var MoveName4 = "name";
+
+	var PPmove1 = 1;
+	var PPmove2 = 1;
+	var PPmove3 = 1; //PP value (mana)
+	var PPmove4 = 1;
+
+	var fire = "Fire"; //type naming 
+	var water = "Water";
+	var grass = "Grass";
+
+	//RIVAL VARIABLES
+
+	var RGlobalName = "name"; // globa vars are used through out
+	var RGlobalLV = 1;
+	var RGlobalHP = 1;
+	var RGlobalSETHP = 1; // value to sef defult HP
+
+	var RMoveName1 = "name"; //null for the move names
+	var RMoveName2 = "name";
+	var RMoveName3 = "name";
+	var RMoveName4 = "name";
+
+	var RPPmove1 = 1;
+	var RPPmove2 = 1;
+	var RPPmove3 = 1;
+	var RPPmove4 = 1;
+
+	var globalType = "name"; // gloabal pokemon types "like null but in strings"
+	var RglobalType = "name";
+    
+    function RGlobalPKMNChange(){  // function number 1 
+
+    	while(true){
+    	var OpprandomPick = Math.floor(Math.random() * 3) + 1; //  simp verson of the randomizer no MIN, MAX
+    	//charmander rival 												 △
+    	if(OpprandomPick == 1){ //randomizer picks between the 3 pokemon |
+    		if(select != "1"){
+    			RGlobalName = "Charmander"; // opp random is the opp random choice
+				RGlobalLV = 5; // takes  the name vars from up top and then turns them into thease starts for the diffrent cherictors
+				RGlobalHP = 25; // setting the defult valuse for the HP
+				RGlobalSETHP = 25; // redundint setting for HP
+				RglobalType = fire;
+
+				RMoveName1 = "Scratch"; // move names to be substituted in sentinces
+				RMoveName2 = "Ember";
+				RMoveName3 = "Leer";
+				RMoveName4 = "Flamethrower";
+
+				RPPmove1 = 15; // describes the ammount of PP (mana) the rival AI gets the move number is for the move
+				RPPmove2 = 15;
+				RPPmove3 = 25;
+				RPPmove4 = 15;
+				break; // ends the loop kinda recussive tbh but ngl this was done last minute
+    		}
+    	}
+    	    	//squirtle Rival
+    	if(OpprandomPick == 2){ // number 2 for the randomizer same concept as the fist one the only thing that chages is the RMoveName on any of them
+    		if(select != "2"){
+    			RGlobalName = "Squirtle"; // this the name of the pokemon
+				RGlobalLV = 5;
+				RGlobalHP = 25; // same values as above
+				RGlobalSETHP = 25;
+				RglobalType = water;
+
+
+				RMoveName1 = "Water Gun"; // same thhing here jsut diffrent text names.
+				RMoveName2 = "Scratch";
+				RMoveName3 = "Leer";
+				RMoveName4 = "Bubble Gun";
+
+				RPPmove1 = 15;
+				RPPmove2 = 15;
+				RPPmove3 = 25;
+				RPPmove4 = 15;
+				break;
+    		}
+    	}
+    	    	//bulbasaur Rival
+    	if(OpprandomPick == 3){ // this is the bnma of the pokemon
+    		if(select != "3"){ //randomizer number
+    			RGlobalName = "Bulbasaur"; // name of the pokemon
+				RGlobalLV = 5;
+				RGlobalHP = 25;
+				RGlobalSETHP = 25;
+				RglobalType = grass;
+
+				RMoveName1 = "Razor Leaf"; // move
+				RMoveName2 = "Tackle";
+				RMoveName3 = "Leer";
+				RMoveName4 = "Vine Whip";
+
+				RPPmove1 = 15; // defigns the number of pp
+				RPPmove2 = 15;
+				RPPmove3 = 25;
+				RPPmove4 = 15;
+				break;
+    			}
+    		}
+    	}
+    }
+
+     function GlobalPKMNChange(){ // this function is to be called when the user chooses a pokemon, it defigns the values of each of each individual pokemon, it is the same concept as the one above, except with diffrent vauble names.
+
+    	if(select == "1"){ 
+    			//user Charmander
+    			GlobalName = "Charmander"; //sets thr nsmr of the pokemon || side note there is varubles for this kind of thing because its way more efficient to just call on it, then type it out all the time.
+				GlobalLV = 5; // level of the pokemon
+				GlobalHP = 25; // HP of the pokemon - called on in text
+				GlobalSETHP = 25; // sets the HP -- calledon in "logic code"
+				globalType = fire;
+
+				MoveName1 = "Scratch"; // name of the pokemon name.
+				MoveName2 = "Ember";
+				MoveName3 = "Leer";
+				MoveName4 = "Flamethrower";
+
+				PPmove1 = 15;
+				PPmove2 = 15;
+				PPmove3 = 25;
+				PPmove4 = 15;
+	
+    	}
+
+    	if(select == "2"){
+    			//user Squirtle
+    			GlobalName = "Squirtle";
+				GlobalLV = 5;
+				GlobalHP = 25;
+				GlobalSETHP = 25;
+				globalType = water;
+
+
+				MoveName1 = "Water Gun";
+				MoveName2 = "Scratch";
+				MoveName3 = "Leer";
+				MoveName4 = "Bubble Gun";
+
+				PPmove1 = 15;
+				PPmove2 = 15;
+				PPmove3 = 25;
+				PPmove4 = 15;
+    	}
+
+    	if(select == "3"){
+    			//user Bulbasaur
+    			GlobalName = "Bulbasaur";
+				GlobalLV = 5;
+				GlobalHP = 25;
+				GlobalSETHP = 25;
+				globalType = grass;
+
+				MoveName1 = "Razor Leaf";
+				MoveName2 = "Tackle";
+				MoveName3 = "Leer";
+				MoveName4 = "Vine Whip";
+
+				PPmove1 = 15;
+				PPmove2 = 15;
+				PPmove3 = 25;
+				PPmove4 = 15;
+    	}	
+    }
+
+    function ATKSubtract(){ // this is the math function, its job is to subtract all the diffrent values in order to get the final value when you attack
+
+    	var effective = Math.floor(Math.random() * 5) + 4; // effective math
+    	var NotEffective = Math.floor(Math.random() * 3) + 1; // not effective math
+    	var RSuperEffective = RGlobalHP - 15;
+    	var SuperEffective = GlobalHP - 15;
+    	var sub = RGlobalHP - effective;
+    	var subN = RGlobalHP - NotEffective;
+
+    	//RGlobalHP = sub;
+    	//RGlobalHP = RSuperEffective;
+    	//RGlobalHP = subN;
+
+    	if(moveSelect == 1){ // does the calculations for the math
+    		if(MoveName1 == "Scratch"){
+    			var sub = RGlobalHP - effective;
+    			alert("IT WAS EFFECTIVE!!");
+    			RGlobalHP = sub;
+    		}
+    		if(MoveName1 == "Water Gun"){
+    			if(RGlobalName == "Charmander"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				alert("ITS SUPER EFFECTIVE!!");
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Bulbasaur"){ //		math for the AI
+    				var subN = RGlobalHP - NotEffective;
+    				alert("IT WAS NOT EFFECTIVE!!"); // caculating the effectiveness of the moves.
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName1 == "Razor Leaf"){ // how it works
+    			if(RGlobalName == "Squirtle"){ // name of pokemon
+    				var RSuperEffective = RGlobalHP - 15; // supereffective damanage randomizer - globalHP var for pokemon
+    				alert("ITS SUPER EFFECTIVE!!"); // notice for effectiveness
+    				RGlobalHP = RSuperEffective; //is it effective or not.
+    			}
+    			if(RGlobalName == "Charmander"){
+    				var subN = RGlobalHP - NotEffective;
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				RGlobalHP = subN;
+    			}
+    		}
+    	}
+    	if(moveSelect == 2){ // same thing here and for all the rest of them, just for diffrent pokemon. includes all 4 moves.
+    		if(MoveName2 == "Scratch"){
+    			var sub = RGlobalHP - effective;
+    			alert("IT WAS EFFECTIVE!!");
+    			RGlobalHP = sub;
+    		}
+    		if(MoveName2 == "Ember"){
+    			if(RGlobalName == "Bulbasaur"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				alert("ITS SUPER EFFECTIVE!!");
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Squirtle"){
+    				var subN = RGlobalHP - NotEffective;
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName2 == "Tackle"){
+    			var sub = RGlobalHP - effective;
+    			alert("IT WAS EFFECTIVE!!");
+    			RGlobalHP = sub;
+    		}
+    	}
+    	if(moveSelect == 3){
+    		if(MoveName3 == "Leer"){
+    			alert("THE FOE'S POKEMONS DEFENCE HAS DECREASED");	
+    		}
+    	}
+    	if(moveSelect == 4){
+    		if(MoveName4 == "Flamethrower"){
+    			if(RGlobalName == "Bulbasaur"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				alert("ITS SUPER EFFECTIVE!!");
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Squirtle"){
+    				var subN = RGlobalHP - NotEffective;
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName4 == "Vine Whip"){
+    			if(RGlobalName == "Squirtle"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				alert("ITS SUPER EFFECTIVE!!");
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Charmander"){
+    				var subN = RGlobalHP - NotEffective;
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName4 == "Bubble Gun"){
+    			if(RGlobalName == "Charmander"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				alert("ITS SUPER EFFECTIVE!!");
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Bulbasaur"){
+    				var subN = RGlobalHP - NotEffective;
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				RGlobalHP = subN;
+    			}
+    		}
+    	}
+    }
+    	 function RATKSubtract(){ // thid function does the math for the AI, basicly the same thing as above, but it is just for the AI.
+    	var effective = Math.floor(Math.random() * 5) + 4; // does the calculation
+    	var NotEffective = Math.floor(Math.random() * 3) + 1;
+    	var RSuperEffective = RGlobalHP - 15; // global hp attack calculator for supereffective
+    	var SuperEffective = GlobalHP - 15;
+
+    	var Rsub = GlobalHP - effective; 
+    	var RsubN = GlobalHP - NotEffective;
+
+    	//RGlobalHP = sub;
+    	//RGlobalHP = RSuperEffective;
+    	//RGlobalHP = subN;
+    	var randomAtk = Math.floor(Math.random() * 2) + 1;
+
+    	if(RGlobalName == "Charmander"){
+    		if(randomAtk == 1){
+    		if(GlobalName == "Bulbasaur"){
+    			alert("Charmander used Flamethrower!!");
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(randomAtk == 2){
+    		if(GlobalName == "Bulbasaur"){
+    			alert("Charmander used Ember!!");
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(GlobalName == "Squirtle"){
+    			alert("Charmander used Scratch!!")
+    			var Rsub = GlobalHP - effective;
+    			alert("IT WAS EFFECTIVE");
+    			GlobalHP = Rsub;
+    		}
+    	}
+    	if(RGlobalName == "Squirtle"){
+    		if(randomAtk == 1){ // more setting values, i coulsd comment this part but there is not much that needs to be done, here as it would be repetitive to comment the same thing more then once
+    		if(GlobalName == "Charmander"){// i think i got my point around art this point.
+    			alert("Squirtle used Water Gun!!");
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(randomAtk == 2){
+    		if(GlobalName == "Charmander"){
+    			alert("Squirtle used Bubble Gun!!");
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(GlobalName == "Bulbasaur"){
+    			alert("Squirtle used Scratch!!");
+    			var Rsub = GlobalHP - effective;
+    			alert("IT WAS EFFECTIVE");
+    			GlobalHP = Rsub;
+    		}
+    	}
+    	if(RGlobalName == "Bulbasaur"){
+
+    		if(randomAtk == 1){
+    		if(GlobalName == "Squirtle"){
+    			alert("Bulbasaur used Razor Leaf!!");
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(randomAtk == 2){
+    		if(GlobalName == "Squirtle"){
+    			alert("Bulbasaur used Vine Whip!!");
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(GlobalName == "Charmander"){
+    			alert("Bulbasaur used Scratch!!")
+    			var Rsub = GlobalHP - effective;
+    			alert("IT WAS EFFECTIVE");
+    			GlobalHP = Rsub;
+    		}
+    	}
+    	}
+    while(true){ // this loop is what happens if you loose
+    if(GlobalHP <= 0){
+    	rivalB.pause();
+		alert(GlobalName + " HAS FAINTED!!");
+		alert("HAHA LOSER, YOU LOST LOLLOLOLOLOL");
+		var playAgain = prompt("Would like to play again? (yes or no)"); // play again fuinction w/ anti type
+		if(playAgain != "yes"){
+			if(playAgain != "no"){
+				while(true){
+					alert("Thats not an option, type yes or no.");
+					var playAgainCon = prompt("Would like to play again? (yes or no)");
+					if(playAgainCon == "yes"){
+						playAgain = playAgainCon;
+						break;
+					}
+					if(playAgainCon == "no"){
+						playAgain = playAgainCon;
+						break;
+					}
+				}
+			}
+		}
+		if(playAgain == "no"){
+			break;
+		}
+	}
+	if(RGlobalHP <= 0){
+		rivalB.pause(); // note sound should be fixed at this point, if not push the latest build anyways.
+		alert("Congratualations you won!!!!"); // wining vcode with anti type
+		var playAgain = prompt("Would like to play again? (yes or no)");
+		if(playAgain == "no"){
+			break;
+		}
+	}
+    alert("whats this? IS IT PERHAPS A RIVAL BATTLE??????!!!!!!!"); // this is the start code
+    background_music.pause();
+	var battle_music = new Audio("battle_music.mp3");
+	battle_music.play();
+    sel.play();
+    alert("LV 5 VS LV 5 MATCH FOLKS!!!! LETS GO!!!!!!!!!!!!!"); // game instructions start here.
+    alert(" Announcer: before we begin we need to learn some stuff! \n thia is a pokemon game. you battle your rival untill you die. \n if you win great! but if you loose you will be shamed eturnally. \n what are the rules you sAY? \n THERE ARE NO RULES NOW FIGHT!!!!!!!");
+    sel.play();
+    alert("WHAT POKEMON WILL YOU CHOOSE TO FIGHT!!");
+    sel.play();
+    alert("TO SELECT, TYPE THE NUMBER NEXT TO THE OPTION (E.X: 1)...2)...3)...)");
+    sel.play();
+    var select = prompt("1) Charmander 2) Squirtle 3) Bulbasaur"); // prompting for ending 
+    sel.play();
+    if(select != "1"){
+    	if(select != "2"){
+    		if(select != "3"){
+    			while(true){
+    				alert("Thats not a number and not a option from the list");
+    				sel.play();
+    				alert("Type only the number next to the pokemon's name");
+    				sel.play();
+    				var selectCon = prompt("1) Charmander 2) Squirtle 3) Bulbasaur");
+    				sel.play();
+						
+						if(selectCon == "1"){
+							select = selectCon;
+							break;
+						}
+						if(selectCon == "2"){
+							select = selectCon;
+							break;
+						}
+						if(selectCon == "3"){
+							select = selectCon;
+							break;
+						}
+    			}
+    		}
+    	}
+    }
+    
+	RGlobalPKMNChange();
+    alert("YOUR RIVAL HAS CHOSEN " + RGlobalName + "!!!");
+    alert("ALL RIGHT!!");
+    alert("LETS GET READY TO RUMBLE!!!");
+    alert("3!!!");
+    alert("2!!!");
+    alert("1!!!");
+    rivalEcc.pause();
+    alert("GO!!!");
+    GlobalPKMNChange();
+    alert("RIVAL THREW OUT " + RGlobalName + "!!!");
+    alert("YOU THREW OUT " + GlobalName + "!!!");
+    var ISable = true;
+
+    while(true){
+    if(GlobalHP == 0){
+    	break;
+    }
+    if(RGlobalHP == 0){
+    	break;
+    }
+    while(true){
+    var battleSelect = prompt("[YOU: " + "(" + globalType + ") " + GlobalName + " LV:5 HP: " + GlobalHP + "/" + GlobalSETHP + "][1) FIGHT 2) RUN ]");
+    sel.play();
+    if(battleSelect == "1"){
+    	break;
+    }
+
+    if(battleSelect == "2"){
+    	alert("YOU CANT RUN FROM BATTLE YOU COWARD!!!!");
+    	sel.play();
+    }
+    if(battleSelect != "1"){
+    	if(battleSelect != "2"){
+    		while(true){
+    		alert("Thats not an option, type 1 or 2!!");
+    		sel.play();
+    		var battleSelectCon = prompt("[YOU: " + "(" + globalType + ") " + GlobalName + " LV:5 HP: " + GlobalHP + "/" + GlobalSETHP + "][1) FIGHT 2) RUN ]");
+    		sel.play();
+    		if(battleSelectCon == "1"){
+    			battleSelect == battleSelectCon;
+    			break;
+    		}
+    		if(battleSelectCon == "2"){
+    			battleSelect == battleSelectCon;
+    			break;
+    		}
+    	}
+    	}
+    }
+    }
+    //////////////////////////////////////////////////////////////////////
+    while(true){
+    if(battleSelect == "1"){
+    var moveSelect = prompt("[RIVAL: " + "(" + RglobalType + ") " + RGlobalName + " LV:5 HP: " + RGlobalHP + "/" + RGlobalSETHP + "] / [(YOU) 1) " + MoveName1 + " [PP: " + PPmove1 + "] 2) " + MoveName2 + " [PP: " + PPmove2 + "] 3) " + MoveName3 + " [PP: " + PPmove3 + "] 4) " + MoveName4 + " [PP: " + RPPmove4 + "] ]" );
+    sel.play();
+    if(moveSelect == "1"){
+    	var PPsubtract1 = PPmove1 - 1;
+    	ISable = true;
+    	PPmove1 == PPsubtract1;
+    	if(PPmove1 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    if(moveSelect == "2"){
+    	var PPsubtract2 = PPmove2 - 1;
+    	ISable = true;
+    	PPmove2 == PPsubtract2;
+    	if(PPmove2 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    if(moveSelect == "3"){
+    	var PPsubtract3 = PPmove3 - 1;
+    	ISable = true;
+    	PPmove3 == PPsubtract3;
+    	if(PPmove3 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    if(moveSelect == "4"){
+    	var PPsubtract4 = PPmove4 - 1;
+    	ISable = true;
+    	PPmove4 == PPsubtract4;
+    	if(PPmove4 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    var SpeedATK = Math.floor(Math.random() * 2) + 1;
+
+    //player goes first
+    if(ISable == true){
+    if(SpeedATK == 2){
+ //////////////////////////////////////////////////////////////
+    	if(moveSelect == 1){
+    		alert("YOU ATTACKED FIRST!!");
+    		alert("(YOU) " + GlobalName + " used " + MoveName1);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+
+    		if(RGlobalHP == 0) {
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(GlobalHP == 0) {
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    	}
+
+////////////////////////////////////////////////////////////////////////////////////
+    	if(moveSelect == 2){
+    		alert("YOU ATTACKED FIRST!!");
+    		alert("(YOU) " + GlobalName + " used " + MoveName2);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(GlobalHP == 0) {
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    	}
+/////////////////////////////////////////////////////////////////////////////////////////////
+    	if(moveSelect == 3){
+    		alert("YOU ATTACKED FIRST!!");
+    		alert("(YOU) " + GlobalName + " used " + MoveName3);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(GlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    	}
+////////////////////////////////////////////////////////////////////////////////////////////
+    	if(moveSelect == 4){
+    		alert("YOU ATTACKED FIRST!!");
+    		alert("(YOU) " + GlobalName + " used " + MoveName4);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(GlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    	}
+    	break;
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+}
+	if(ISable == true){
+    if(SpeedATK == 1){
+    	RATKSubtract();
+    	if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(GlobalHP == 0){
+    			break;
+    		}
+    	alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    	sel.play();
+    	alert("YOUR TURN!!");
+    	sel.play();
+
+    	if(moveSelect == 1){
+    		alert("(YOU) " + GlobalName + " used " + MoveName1);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+    	if(moveSelect == 2){
+    		alert("(YOU) " + GlobalName + " used " + MoveName2);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+    	if(moveSelect == 3){
+    		alert("(YOU) " + GlobalName + " used " + MoveName3);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+    	if(moveSelect == 4){
+    		alert("(YOU) " + GlobalName + " used " + MoveName4);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+    	alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    	sel.play();
+    	break;
+    }
+}
+	}
+	
+	}
+
+	}
+}
+/*script notes:
+
+- make sure to change up the sound a little, seems generic
+
+ - if time left re add in functions (that verson was less half ass but took too much time)
+
+ - when sending this in attach the old version. (it was much better but took to long to make)
+
+not the msot efficent script in the world, it couls be better, but pls look at the other one so yo can see waht was change
+*/
+
+// there is a new bug in firefox after update 82 (the latest verson) they changed the audio play method and i coulsent figure it out in time, so we seem to be stuck with out audio for now for the backing track maybe??
+// ps i made this in only 3 hours so it probbly has a lot of mistakes, and it looks a little rushed. (not my best work)  but i forgot about it, because i was focoused on working in unity.
+
+// commenting could be better though
+
+
+</script>
+
+</body>
+</html>>
