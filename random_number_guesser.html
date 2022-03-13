@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>random number guesser</title> <!-- sets the title of the webpage-->
+
+<style type="text/css">  /*sets the background colour*/
+body {background-color:pink}
+</style>>
+<script type="text/javascript">
+	//dialog to explane the game
+	alert("you have found a guessing game, enter a number from 0 to 10 and see what happens");
+	let USERIMPUT = prompt("enter a number from 0 - 10")  //rules
+	var min=1; //sets the minimum value for the randomizer
+	var max=10; // sets the maximum value for the raniomizer
+	var random = Math.floor(Math.random() * (+max - +min)) + +min; // random number genorator
+
+	if(USERIMPUT===random){ // if user imput is the same as the same as the randomly genorated
+		alert("you guessed correctly"); //number then it outputs this
+		//alert(random) // debug
+	}else{
+		alert("you guessed wrong, the number was " + random) // if the user guesses wrong this outputed
+	}
+</script>				
+</body>
+</html>>

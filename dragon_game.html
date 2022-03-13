@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dragons den</title> <!--sets title-->
+    <style type="text/css">  
+body {background-color:orange}  /*sets the background colour*/
+</style>>
+</head>
+<body>
+<script type="text/javascript">
+	//introduces the game
+    alert("welcome to the dragons den, a game of wit and and strategy");
+      alert("click through to the next one to continue")
+      alert(" may you have safe travles, begin!")
+      alert("You are in a land full of dragons. In front of you, you see two caves. In one cave, the dragon is friendly and will share his treasure with you. The other dragon is greedy and hungry, and will eat you on sight.")
+
+      //question 1 
+
+      let USERIMPUT = prompt("what cave would you like to enter? <1 or 2>") 
+
+      var min = 0 //minimum value
+      var max = 3//max value
+      var random = Math.floor(Math.random() * (+max - +min)) + +min; // random number genorator
+
+if(USERIMPUT===random){ // if the users guess is correct it will output this
+   alert("You approach the cave…")
+    alert("It is dark and spooky…")
+     alert("A large dragon jumps out in front of you! He opens his jaws and...")
+     alert("Gives you a treasure")
+     alert("Do you want to play again? (just refresh the page")
+}else{ // if the users guess is false then it will output this.
+ alert("You approach the cave…")
+    alert("It is dark and ominous…")
+     alert("when suddenly...")
+     alert("A large dragon jumps out in front of you! He opens his jaws and...")
+     alert("Gobbles you down in one bite!")
+     alert("Do you want to play again? (just refresh the page)")
+     //alert("number genorated" + random + "user imput" + USERIMPUT ) //self test
+
+}
+</script>
+</body>
+</html>>
+

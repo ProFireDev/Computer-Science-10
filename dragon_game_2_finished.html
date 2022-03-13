@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> into the dragons den!</title> <!--sets title-->
+    <style type="text/css">  
+body {background-color:orange}  /*sets the background colour*/
+</style>>
+</head>
+<script type="text/javascript"> /* 
+this took me a really long time becuase i had to almost omplety redo the game :( it was fun though!
+*/
+    initialize(); //starts program
+
+    function initialize(){ //makes my life easiyer by using a function
+      //introduces the game
+ alert("welcome to the dragons den, a game of wit and and strategy");
+      alert("click through to the next one to continue");
+      alert(" may you have safe travles, begin!");
+      alert("You are in a land full of dragons. In front of you, you see two caves. In one cave, the dragon is friendly and will share his treasure with you. The other dragon is greedy and hungry, and will eat you on sight.");
+
+      alert("but be wear of the therd cave");
+      alert("you dot want to go there...");
+      alert("here we go...");
+
+         //LOGIC DECIDER
+       var USERIMPUT = prompt("what cave would you like to enter? <1 or 2> or 3...");
+       var min = 1 //minimum value
+      var max = 3//max value
+      var random = Math.floor(Math.random() * (+max - +min)) + +min; // random number genorator
+//cave 1
+      if(USERIMPUT == "1"){ // if the users guess is correct it will output this
+        if(random == "1"){
+            alert("You approach the cave..."); //start od story 1
+            alert("It is dark and spooky...");
+            alert("A large dragon jumps out in front of you! He opens his jaws and...");
+            alert("Gives you a treasure");
+            alert("Do you want to play again?");
+        }else{
+          alert("You approach the cave…");// start of story 1
+        alert("It is dark and ominous…");
+        alert("when suddenly...");
+        alert("A large dragon jumps out in front of you! He opens his jaws and...");
+        alert("Gobbles you down in one bite!");
+        }
+   }
+//cave 2
+   if(USERIMPUT== "2"){
+    if(random== "2"){
+        alert("You approach the cave..."); //start of story 2
+          alert("It is dark and spooky...");
+          alert("A large dragon jumps out in front of you! He opens his jaws and...");
+          alert("tells you a joke");
+          alert("Why don't programmers like nature?");
+          alert(">_>")
+          alert("It has too many bugs."); // this is a refrince to a commador 64 game called dragons den
+      }else{
+        alert("You approach the cave...");// start of story 2
+        alert("It is dark and ominous...");
+        alert("when suddenly...");
+        alert("A large dragon jumps out in front of you! He opens his jaws and...");
+        alert("Gobbles you down in one bite!");
+      }
+    }
+    if(USERIMPUT=3){
+      alert("you enter a cave...");
+      alert("theres a big...");
+      alert("spookie");
+      alert("error 404, website not found")
+      alert("error 501, not implemented")
+       }
+
+   var restart = confirm("would you like to play again? \n press ok or cancel. \n")
+   if(restart == true){
+        initialize();
+   }
+      }
+//its a little bit of spegitti but its commented
+</script>
+</body>
+</html>>

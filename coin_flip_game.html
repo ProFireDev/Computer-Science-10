@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>coin flip game</title>
+</head>
+<body>
+<style type="text/css">
+body {background-color:red}
+</style>>
+
+<script type="text/javascript">
+	//dialog to explane the game
+	alert("hi there user!");
+	alert("you have stumbled across a coin flip game")
+	alert("all you have to do to play the game is imput a guess of heads or tails!")
+	alert("when your ready click through to the nect box, and enter a value of heads or false! enjoy")
+	let USERIMPUT = prompt("write your prediction: (heads or tails)  ")
+	var min=0; 
+	var max=3; 
+	var random = 
+	Math.floor(Math.random() * (+max - +min)) + +min; 
+
+	//checks to see if the user guessed tails correctly
+	if(random=1){
+		if(USERIMPUT="tails"){
+			alert("you guessed correctly");
+			alert(random) //debug
+		}
+	}
+//checks to see if the user guessed tails correctly
+	if(random=2){
+		if(USERIMPUT="heads"){
+			alert("you guessed correctly");
+		}else{
+			alert("you guessed wrong :(");
+		}
+	}
+</script>				
+
+</body>
+</html>>
