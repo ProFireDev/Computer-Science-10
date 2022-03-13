@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rival Battle</title>
+</head>
+<body>
+<script type="text/javascript">
+
+	//music variables
+
+	//Cries
+	var bubblebeam = new Audio("Bubble_Beam.mp3");
+	var waterGun = new Audio("Water_Gun.mp3");
+	var scratch = new Audio("Scratch.mp3");
+	var ember = new Audio("Ember.mp3");
+	var leer = new Audio("Leer.mp3");
+	var flamethrower = new Audio("Flamethrower.mp3");
+	var razorLeaf = new Audio("Razor_Leaf.mp3");
+	var tackle = new Audio("Tackle.mp3");
+	var vineWhip = new Audio("Vine_Whip.mp3");
+
+	var statDown = new Audio("statDown.wav");
+
+	var rpkmnCry = "name";
+	var pkmnCry = "name";
+
+	var GlobalCry1 = "name";
+	var GlobalCry2 = "name";
+	var GlobalCry3 = "name";
+	var GlobalCry4 = "name";
+
+	//UI Sound Effects
+	var sel = new Audio("select.wav");
+	var three = new Audio("3.wav");
+	var two = new Audio("2.wav");
+	var one = new Audio("1.wav");
+	var go = new Audio("Go.wav");
+
+	var ballThrow = new Audio("ballThrow.wav");
+	var ballOpen = new Audio("ballOpen.wav");
+
+	//battle effects
+	var notEF = new Audio("notEffective.wav");
+	var eF = new Audio("effective.wav");
+	var sE = new Audio("superEffective.wav");
+
+	//main music
+	rivalB = new Audio('battle-elite-four-pokemon-diamond-pearl-music-extended-hd.mp3'); 
+			rivalB.addEventListener('ended', function() {
+    			this.currentTime = 0;
+    			this.play();
+			}, false);
+
+			rivalEcc = new Audio('pokemon-diamond-pearl-elite-four-encounter.mp3'); 
+			rivalEcc.addEventListener('ended', function() {
+    			this.currentTime = 0;
+    			this.play();
+			}, false);
+			
+
+
+	var victory = new Audio("pokemon-diamond-pearl-elite-four-battle-victory.mp3");
+	var loser = new Audio("crowd-boo-sound-effect.mp3");
+
+	//USER VARIABLES
+	var GlobalName = "name";
+	var GlobalLV = 1;
+	var GlobalHP = 1;
+	var GlobalSETHP = 1;
+
+	var MoveName1 = "name";
+	var MoveName2 = "name";
+	var MoveName3 = "name";
+	var MoveName4 = "name";
+
+	var PPmove1 = 1;
+	var PPmove2 = 1;
+	var PPmove3 = 1;
+	var PPmove4 = 1;
+
+	var fire = "Fire";
+	var water = "Water";
+	var grass = "Grass";
+
+	//RIVAL VARIABLES
+
+	var RGlobalName = "name";
+	var RGlobalLV = 1;
+	var RGlobalHP = 1;
+	var RGlobalSETHP = 1;
+
+	var RMoveName1 = "name";
+	var RMoveName2 = "name";
+	var RMoveName3 = "name";
+	var RMoveName4 = "name";
+
+	var RPPmove1 = 1;
+	var RPPmove2 = 1;
+	var RPPmove3 = 1;
+	var RPPmove4 = 1;
+
+	var globalType = "name";
+	var RglobalType = "name";
+    
+    function RGlobalPKMNChange(){
+
+    	while(true){
+
+    	var OpprandomPick = Math.floor(Math.random() * 3) + 1;
+    	//charmander Rival
+    	if(OpprandomPick == 1){
+    		if(select != "1"){
+    			RGlobalName = "Charmander";
+				RGlobalLV = 5;
+				RGlobalHP = 25;
+				RGlobalSETHP = 25;
+				RglobalType = fire;
+				rpkmnCry = new Audio("charmander.ogg");
+
+				RMoveName1 = "Scratch";
+				RMoveName2 = "Ember";
+				RMoveName3 = "Leer";
+				RMoveName4 = "Flamethrower";
+
+				RPPmove1 = 15;
+				RPPmove2 = 15;
+				RPPmove3 = 25;
+				RPPmove4 = 15;
+				break;
+
+    		}
+    	}
+    	    	//squirtle Rival
+    	if(OpprandomPick == 2){
+    		if(select != "2"){
+    			RGlobalName = "Squirtle";
+				RGlobalLV = 5;
+				RGlobalHP = 25;
+				RGlobalSETHP = 25;
+				RglobalType = water;
+				rpkmnCry = new Audio("squirtle.ogg");
+
+
+				RMoveName1 = "Water Gun";
+				RMoveName2 = "Scratch";
+				RMoveName3 = "Leer";
+				RMoveName4 = "Bubble Gun";
+
+				RPPmove1 = 15;
+				RPPmove2 = 15;
+				RPPmove3 = 25;
+				RPPmove4 = 15;
+				break;
+
+    		}
+    	}
+    	    	//bulbasaur Rival
+    	if(OpprandomPick == 3){
+    		if(select != "3"){
+    			RGlobalName = "Bulbasaur";
+				RGlobalLV = 5;
+				RGlobalHP = 25;
+				RGlobalSETHP = 25;
+				RglobalType = grass;
+				rpkmnCry = new Audio("bulbasaur.ogg");
+
+				RMoveName1 = "Razor Leaf";
+				RMoveName2 = "Tackle";
+				RMoveName3 = "Leer";
+				RMoveName4 = "Vine Whip";
+
+				RPPmove1 = 15;
+				RPPmove2 = 15;
+				RPPmove3 = 25;
+				RPPmove4 = 15;
+				break;
+
+    			}
+    		}
+
+    	}
+	
+    }
+
+     function GlobalPKMNChange(){
+
+    	if(select == "1"){
+    			//user Charmander
+    			GlobalName = "Charmander";
+				GlobalLV = 5;
+				GlobalHP = 25;
+				GlobalSETHP = 25;
+				globalType = fire;
+				pkmnCry = new Audio("charmander.ogg");
+
+				MoveName1 = "Scratch";
+				MoveName2 = "Ember";
+				MoveName3 = "Leer";
+				MoveName4 = "Flamethrower";
+
+				globalCry1 = scratch;
+				globalCry2 = ember;
+				globalCry3 = leer;
+				globalCry4 = flamethrower;
+
+				PPmove1 = 15;
+				PPmove2 = 15;
+				PPmove3 = 25;
+				PPmove4 = 15;
+	
+    	}
+
+    	if(select == "2"){
+    			//user Squirtle
+    			GlobalName = "Squirtle";
+				GlobalLV = 5;
+				GlobalHP = 25;
+				GlobalSETHP = 25;
+				globalType = water;
+				pkmnCry = new Audio("squirtle.ogg");
+
+
+				MoveName1 = "Water Gun";
+				MoveName2 = "Scratch";
+				MoveName3 = "Leer";
+				MoveName4 = "Bubble Gun";
+
+				globalCry1 = waterGun;
+				globalCry2 = scratch;
+				globalCry3 = leer;
+				globalCry4 = bubblebeam;
+
+				PPmove1 = 15;
+				PPmove2 = 15;
+				PPmove3 = 25;
+				PPmove4 = 15;
+
+	
+    	}
+
+    	if(select == "3"){
+    			//user Bulbasaur
+    			GlobalName = "Bulbasaur";
+				GlobalLV = 5;
+				GlobalHP = 25;
+				GlobalSETHP = 25;
+				globalType = grass;
+				pkmnCry = new Audio("bulbasaur.ogg");
+
+				MoveName1 = "Razor Leaf";
+				MoveName2 = "Tackle";
+				MoveName3 = "Leer";
+				MoveName4 = "Vine Whip";
+
+				globalCry1 = razorLeaf;
+				globalCry2 = tackle;
+				globalCry3 = leer;
+				globalCry4 = vineWhip;
+
+				PPmove1 = 15;
+				PPmove2 = 15;
+				PPmove3 = 25;
+				PPmove4 = 15;
+
+	
+    	}
+
+
+    	
+    }
+
+    function ATKSubtract(){
+
+    	var effective = Math.floor(Math.random() * 5) + 4;
+    	var NotEffective = Math.floor(Math.random() * 3) + 1;
+    	var RSuperEffective = RGlobalHP - 15;
+    	var SuperEffective = GlobalHP - 15;
+
+    	var sub = RGlobalHP - effective;
+    	var subN = RGlobalHP - NotEffective;
+
+    	//RGlobalHP = sub;
+    	//RGlobalHP = RSuperEffective;
+    	//RGlobalHP = subN;
+
+    	if(moveSelect == 1){
+    		if(MoveName1 == "Scratch"){
+    			var sub = RGlobalHP - effective;
+    			eF.play();
+    			alert("IT WAS EFFECTIVE!!");
+    			
+    			RGlobalHP = sub;
+    		}
+    		if(MoveName1 == "Water Gun"){
+    			if(RGlobalName == "Charmander"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				sE.play();
+    				alert("ITS SUPER EFFECTIVE!!");
+    				
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Bulbasaur"){
+    				var subN = RGlobalHP - NotEffective;
+    				notEF.play();
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				
+    				RGlobalHP = subN;
+
+    			}
+    		}
+    		if(MoveName1 == "Razor Leaf"){
+    			if(RGlobalName == "Squirtle"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				sE.play();
+    				alert("ITS SUPER EFFECTIVE!!");
+    				
+    				RGlobalHP = RSuperEffective;
+
+    			}
+    			if(RGlobalName == "Charmander"){
+    				var subN = RGlobalHP - NotEffective;
+    				notEF.play();
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				
+    				RGlobalHP = subN;
+    			}
+    		}
+
+    	}
+
+    	if(moveSelect == 2){
+    		if(MoveName2 == "Scratch"){
+    			var sub = RGlobalHP - effective;
+    			eF.play();
+    			alert("IT WAS EFFECTIVE!!");
+    			
+    			RGlobalHP = sub;
+    		}
+    		if(MoveName2 == "Ember"){
+    			if(RGlobalName == "Bulbasaur"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				sE.play();
+    				alert("ITS SUPER EFFECTIVE!!");
+    				
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Squirtle"){
+    				var subN = RGlobalHP - NotEffective;
+    				notEF.play();
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName2 == "Tackle"){
+    			var sub = RGlobalHP - effective;
+    			eF.play();
+    			alert("IT WAS EFFECTIVE!!");
+    			
+    			RGlobalHP = sub;
+    		}
+    		
+    	}
+
+    	if(moveSelect == 3){
+    		if(MoveName3 == "Leer"){
+    			statDown.play();
+    			alert("THE FOE'S POKEMONS DEFENCE HAS DECREASED");
+    			
+    		}
+    		
+    	}
+
+    	if(moveSelect == 4){
+    		if(MoveName4 == "Flamethrower"){
+    			if(RGlobalName == "Bulbasaur"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				sE.play();
+    				alert("ITS SUPER EFFECTIVE!!");
+    				
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Squirtle"){
+    				var subN = RGlobalHP - NotEffective;
+    				notEF.play();
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName4 == "Vine Whip"){
+    			if(RGlobalName == "Squirtle"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				sE.play();
+    				alert("ITS SUPER EFFECTIVE!!");
+    				
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Charmander"){
+    				var subN = RGlobalHP - NotEffective;
+    				notEF.play();
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				
+    				RGlobalHP = subN;
+    			}
+    		}
+    		if(MoveName4 == "Bubble Gun"){
+    			if(RGlobalName == "Charmander"){
+    				var RSuperEffective = RGlobalHP - 15;
+    				sE.play();
+    				alert("ITS SUPER EFFECTIVE!!");
+    				
+    				RGlobalHP = RSuperEffective;
+    			}
+    			if(RGlobalName == "Bulbasaur"){
+    				var subN = RGlobalHP - NotEffective;
+    				notEF.play();
+    				alert("IT WAS NOT EFFECTIVE!!");
+    				
+    				RGlobalHP = subN;
+    			}
+    		}
+    		
+    	}
+
+    }
+
+
+    	 function RATKSubtract(){
+
+    	var effective = Math.floor(Math.random() * 5) + 4;
+    	var NotEffective = Math.floor(Math.random() * 3) + 1;
+    	var RSuperEffective = RGlobalHP - 15;
+    	var SuperEffective = GlobalHP - 15;
+
+    	var Rsub = GlobalHP - effective;
+    	var RsubN = GlobalHP - NotEffective;
+
+    	//RGlobalHP = sub;
+    	//RGlobalHP = RSuperEffective;
+    	//RGlobalHP = subN;
+    	var randomAtk = Math.floor(Math.random() * 2) + 1;
+
+    	if(RGlobalName == "Charmander"){
+    		if(randomAtk == 1){
+    		if(GlobalName == "Bulbasaur"){
+    			alert("Charmander used Flamethrower!!");
+    			flamethrower.play();
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			sE.play();
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+    		if(randomAtk == 2){
+    		if(GlobalName == "Bulbasaur"){
+    			alert("Charmander used Ember!!");
+    			ember.play();
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			sE.play();
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+
+    		if(GlobalName == "Squirtle"){
+    			alert("Charmander used Scratch!!")
+    			scratch.play();
+    			var Rsub = GlobalHP - effective;
+    			alert("IT WAS EFFECTIVE");
+    			eF.play();
+    			GlobalHP = Rsub;
+    		}
+
+    	}
+
+    	if(RGlobalName == "Squirtle"){
+
+    		if(randomAtk == 1){
+    		if(GlobalName == "Charmander"){
+    			alert("Squirtle used Water Gun!!");
+    			waterGun.play();
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			sE.play();
+    			GlobalHP = SuperEffective;
+    			}
+
+    		}
+    		if(randomAtk == 2){
+    		if(GlobalName == "Charmander"){
+    			alert("Squirtle used Bubble Gun!!");
+    			bubblebeam.play();
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			sE.play();
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+
+    		if(GlobalName == "Bulbasaur"){
+    			alert("Squirtle used Scratch!!");
+    			scratch.play();
+    			var Rsub = GlobalHP - effective;
+    			alert("IT WAS EFFECTIVE");
+    			eF.play();
+    			GlobalHP = Rsub;
+    		}
+    	
+    	}
+
+
+    	if(RGlobalName == "Bulbasaur"){
+
+    		if(randomAtk == 1){
+    		if(GlobalName == "Squirtle"){
+    			alert("Bulbasaur used Razor Leaf!!");
+    			razorLeaf.play();
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			sE.play();
+    			GlobalHP = SuperEffective;
+    			}
+
+    		}
+    		if(randomAtk == 2){
+    		if(GlobalName == "Squirtle"){
+    			alert("Bulbasaur used Vine Whip!!");
+    			vineWhip.play();
+    			var SuperEffective = GlobalHP - 15;
+    			alert("ITS SUPER EFFECTIVE!!");
+    			sE.play();
+    			GlobalHP = SuperEffective;
+    			}
+    		}
+
+    		if(GlobalName == "Charmander"){
+    			alert("Bulbasaur used Scratch!!")
+    			scratch.play();
+    			var Rsub = GlobalHP - effective;
+    			alert("IT WAS EFFECTIVE");
+    			eF.play();
+    			GlobalHP = Rsub;
+    		}
+
+
+    	}
+
+
+    	}
+
+
+
+    while(true){
+
+    if(GlobalHP <= 0){
+    	rivalB.pause();
+    	loser.play();
+		alert(GlobalName + " HAS FAINTED!!");
+		alert("HAHA LOSER, YOU LOST LOLLOLOLOLOL");
+		var playAgain = prompt("Would like to play again? (yes or no)");
+		if(playAgain != "yes"){
+			if(playAgain != "no"){
+				while(true){
+					alert("Thats not an option, type yes or no.");
+					var playAgainCon = prompt("Would like to play again? (yes or no)");
+					if(playAgainCon == "yes"){
+						playAgain = playAgainCon;
+						break;
+					}
+					if(playAgainCon == "no"){
+						playAgain = playAgainCon;
+						break;
+					}
+				}
+			}
+
+		}
+		if(playAgain == "no"){
+			break;
+		}
+
+	}
+	if(RGlobalHP <= 0){
+		rivalB.pause();
+		victory.play();
+		alert("Congratualations you won!!!!");
+		var playAgain = prompt("Would like to play again? (yes or no)");
+		if(playAgain == "no"){
+			break;
+		}
+
+	}
+
+	rivalEcc.play();
+    alert("RIVALLLL BATTTLEEE!!!");
+    sel.play();
+    alert("LV 5 VS LV 5 MATCH FOLKS!!!!");
+    sel.play();
+    alert("WHAT POKEMON WILL YOU CHOOSE TO FIGHT!!");
+    sel.play();
+    alert("TO SELECT, TYPE THE NUMBER NEXT TO THE OPTION (E.X: 1)...2)...3)...)");
+    sel.play();
+    var select = prompt("1) Charmander 2) Squirtle 3) Bulbasaur");
+    sel.play();
+    if(select != "1"){
+    	if(select != "2"){
+    		if(select != "3"){
+    			while(true){
+    				alert("Thats not a number and not a option from the list");
+    				sel.play();
+    				alert("Type only the number next to the pokemon's name");
+    				sel.play();
+    				var selectCon = prompt("1) Charmander 2) Squirtle 3) Bulbasaur");
+    				sel.play();
+						
+						if(selectCon == "1"){
+							select = selectCon;
+							break;
+
+						}
+
+						if(selectCon == "2"){
+							select = selectCon;
+							break;
+
+						}
+
+						if(selectCon == "3"){
+							select = selectCon;
+							break;
+
+						}
+
+    			}
+
+    		}
+    	}
+    }
+    
+
+	RGlobalPKMNChange();
+    alert("YOUR RIVAL HAS CHOSEN " + RGlobalName + "!!!");
+    sel.play();
+    alert("ALL RIGHT!!");
+    sel.play();
+    alert("LETS GET READY TO RUMBLE!!!");
+    sel.play();
+    three.play();
+    alert("3!!!");
+    two.play();
+    alert("2!!!");
+    one.play();
+    alert("1!!!");
+    go.play();
+    rivalEcc.pause();
+    rivalB.play();
+    alert("GO!!!");
+    
+
+    GlobalPKMNChange();
+
+    ballThrow.play();
+    alert("RIVAL THREW OUT " + RGlobalName + "!!!");
+    ballOpen.play();
+    rpkmnCry.play();
+    
+    ballThrow.play();
+    alert("YOU THREW OUT " + GlobalName + "!!!");
+    ballOpen.play();
+    pkmnCry.play();
+
+
+    
+
+    var ISable = true;
+
+    while(true){
+    if(GlobalHP == 0){
+    	break;
+    }
+    if(RGlobalHP == 0){
+    	break;
+    }
+    while(true){
+    var battleSelect = prompt("[YOU: " + "(" + globalType + ") " + GlobalName + " LV:5 HP: " + GlobalHP + "/" + GlobalSETHP + "][1) FIGHT 2) RUN ]");
+    sel.play();
+    if(battleSelect == "1"){
+    	break;
+    }
+
+    if(battleSelect == "2"){
+    	alert("YOU CANT RUN FROM BATTLE YOU COWARD!!!!");
+    	sel.play();
+    }
+    if(battleSelect != "1"){
+    	if(battleSelect != "2"){
+    		while(true){
+    		alert("Thats not an option, type 1 or 2!!");
+    		sel.play();
+    		var battleSelectCon = prompt("[YOU: " + "(" + globalType + ") " + GlobalName + " LV:5 HP: " + GlobalHP + "/" + GlobalSETHP + "][1) FIGHT 2) RUN ]");
+    		sel.play();
+    		if(battleSelectCon == "1"){
+    			battleSelect == battleSelectCon;
+    			break;
+    		}
+    		if(battleSelectCon == "2"){
+    			battleSelect == battleSelectCon;
+    			break;
+    		}
+
+    	}
+
+    	}
+    }
+
+    }
+
+    //////////////////////////////////////////////////////////////////////
+
+    while(true){
+    if(battleSelect == "1"){
+    var moveSelect = prompt("[RIVAL: " + "(" + RglobalType + ") " + RGlobalName + " LV:5 HP: " + RGlobalHP + "/" + RGlobalSETHP + "] / [(YOU) 1) " + MoveName1 + " [PP: " + PPmove1 + "] 2) " + MoveName2 + " [PP: " + PPmove2 + "] 3) " + MoveName3 + " [PP: " + PPmove3 + "] 4) " + MoveName4 + " [PP: " + RPPmove4 + "] ]" );
+    sel.play();
+    
+
+    if(moveSelect == "1"){
+    	var PPsubtract1 = PPmove1 - 1;
+    	ISable = true;
+    	PPmove1 == PPsubtract1;
+    	if(PPmove1 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    if(moveSelect == "2"){
+    	var PPsubtract2 = PPmove2 - 1;
+    	ISable = true;
+    	PPmove2 == PPsubtract2;
+    	if(PPmove2 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    if(moveSelect == "3"){
+    	var PPsubtract3 = PPmove3 - 1;
+    	ISable = true;
+    	PPmove3 == PPsubtract3;
+    	if(PPmove3 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+    if(moveSelect == "4"){
+    	var PPsubtract4 = PPmove4 - 1;
+    	ISable = true;
+    	PPmove4 == PPsubtract4;
+    	if(PPmove4 == 0){
+    		alert("That move is out of PP!!");
+    		sel.play();
+    		ISable = false;		
+    	}
+    }
+
+    
+    var SpeedATK = Math.floor(Math.random() * 2) + 1;
+
+    //player goes first
+    if(ISable == true){
+    if(SpeedATK == 2){
+ //////////////////////////////////////////////////////////////
+    	if(moveSelect == 1){
+    		alert("YOU ATTACKED FIRST!!");
+       		globalCry1.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName1);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+
+    		if(RGlobalHP == 0) {
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(GlobalHP == 0) {
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+
+    	}
+
+////////////////////////////////////////////////////////////////////////////////////
+    	if(moveSelect == 2){
+    		alert("YOU ATTACKED FIRST!!");
+    		globalCry2.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName2);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(GlobalHP == 0) {
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+
+ 
+    	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+    	if(moveSelect == 3){
+    		alert("YOU ATTACKED FIRST!!");
+    		globalCry3.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName3);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(GlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+
+    	}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+    	if(moveSelect == 4){
+    		alert("YOU ATTACKED FIRST!!");
+    		globalCry4.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName4);
+    		sel.play();
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+    		alert("OPPONENTS TURN!!");
+    		sel.play();
+    		RATKSubtract();
+    		if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(GlobalHP == 0){
+    			break;
+    		}
+    		alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    		sel.play();
+
+    	}
+    	break;
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+
+}
+	if(ISable == true){
+    if(SpeedATK == 1){
+    	RATKSubtract();
+    	if(GlobalHP < 0){
+    			while(true){
+    				var addBack = GlobalHP + 1;
+    				GlobalHP = addBack;
+    				if(GlobalHP == 0){
+    					break;
+    				}
+    			}
+    		}
+    		if(GlobalHP == 0){
+    			break;
+    		}
+
+    	alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    	sel.play();
+    	alert("YOUR TURN!!");
+    	sel.play();
+
+
+    	if(moveSelect == 1){
+    		globalCry1.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName1);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+
+    	if(moveSelect == 2){
+    		globalCry2.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName2);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+
+    	if(moveSelect == 3){
+    		globalCry3.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName3);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+
+    	if(moveSelect == 4){
+    		globalCry4.play();
+    		alert("(YOU) " + GlobalName + " used " + MoveName4);
+    		ATKSubtract();
+    		if(RGlobalHP < 0){
+    			while(true){
+    				var RaddBack = RGlobalHP + 1;
+    				RGlobalHP = RaddBack;
+    				if(RGlobalHP == 0){
+    					break;
+    				}
+
+    			}
+    		}
+    		if(RGlobalHP == 0){
+    			break;
+    		}
+    	}
+
+    	alert("[" + RGlobalName + " HP: " + RGlobalHP + " / " + GlobalName + " HP: " + GlobalHP + "]");
+    	sel.play();
+    	break;
+
+    }
+
+}
+
+	}
+	
+	}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>>
